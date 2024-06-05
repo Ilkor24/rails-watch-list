@@ -1,0 +1,40 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://media.gqmagazine.fr/photos/603e6a8da9360b0585bcbc6a/16:9/w_2560%2Cc_limit/108387402);">
+    <h1>Listy</h1>
+    <p>Stop to forget your movies</p>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add a new list
+    </button>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 text-secondary" id="exampleModalLabel">New List</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <%= simple_form_for(@list) do |f| %>
+                  <%= f.input :name %>
+                  <%= f.input :picture_url %>
+                  </div>
+                    <div class="modal-footer">
+                    <%= f.submit "Add a list", class:"btn" %>
+                   </div>
+              <% end %>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+
+<div class="cards mt-5">
+  <% @lists.each do |list| %>
+    <div>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.picture_url %>)">
+    <%= link_to list.name, list_path(list), class:"a" %>
+    </div>
+    <%= link_to "Delete", list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn--secondary" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,51 @@
+.autocomplete-results {
+  border: 1px solid #ececec;
+  background-color: #fff;
+  position: absolute;
+  z-index: 1000;
+  overflow: hidden;
+  overflow-y: auto;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .1);
+  width: 100%;
+  max-height: calc(100vh - 6.25rem);
+}
+
+.autocomplete-result-item {
+  cursor: pointer;
+  border-bottom: 1px solid #d8d8d8;
+  text-align: left;
+  padding: .375rem;
+  display: block;
+  text-decoration: none;
+  vertical-align: top;
+  color: #000;
+  overflow: hidden;
+  height: 1%;
+  font-size: .9375rem;
+  font-weight: 400;
+}
+
+.autocomplete-result-thumbnail {
+  max-width: 100%;
+  height: auto;
+  float: left;
+  margin-right: .25rem;
+  display: block;
+  padding: .125rem;
+  background: #fff;
+  border: 1px solid #ececec;
+}
+
+.autocomplete-result-item span {
+  display: block;
+}
+
+.autocomplete-result-text {
+  padding-left: 3.125rem;
+}
+
+.autocomplete-result-title {
+  color: #000;
+  font-size: .8125rem;
+  font-weight: 700;
+}

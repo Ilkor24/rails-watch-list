@@ -1,0 +1,54 @@
+<div class="banner mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @list.picture_url  %>);">
+<h1 class="m-5"><%= @list.name %></h1>
+</div>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#bookmarkModal">
+  Add new bookmark
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="bookmarkModal" tabindex="-1" aria-labelledby="bookmarkModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="bookmarkModalLabel">New bookmark</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@list, @bookmark], html: { data: { controller: 'search', action: 'input->search#searching' } } do |f| %>
+          <%= f.input :comment %>
+          <%= f.input :search, input_html: { data: { search_target: 'input' }}%>
+            <div data-search-target = "result" role="listbox">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <%= f.button :submit %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Movie Card-->
+<div class="container" style="text-align: center;">
+<div class="card-wrapper mt-4">
+<% @bookmarks.each do |bookmark|%>
+  <div class="card-movie">
+    <div class="card-front">
+      <img src= <%= bookmark.movie.poster_url %> alt=<%= bookmark.movie.title %>/>
+    </div>
+      <div class="card-back">
+        <h3> <%= bookmark.movie.title %></h3>
+        <p><%= bookmark.movie.overview%></p>
+        <p>Rating: <%= bookmark.movie.rating %>/10</p>
+        <p> "<%= bookmark.comment %>"</p>
+        <%= link_to "Delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn--secondary" %>
+      </div>
+  </div>
+<% end %>
+</div>
+</div>
